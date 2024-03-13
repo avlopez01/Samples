@@ -2,7 +2,7 @@
   "@context": {
     "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
   },
-  "@id": "assetId",
+  "@id": "assetId2",
   "properties": {
     "name": "product description",
     "contenttype": "application/json"
@@ -10,7 +10,7 @@
   "dataAddress": {
     "type": "HttpData",
     "name": "Test asset",
-    "baseUrl": "https://pokeapi.co/api/v2/pokemon/",
+    "baseUrl": "https://jsonplaceholder.typicode.com/users",
     "proxyPath": "true"
   }
 }
