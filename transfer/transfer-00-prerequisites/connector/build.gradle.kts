@@ -16,6 +16,7 @@ plugins {
     `java-library`
     id("application")
     alias(libs.plugins.shadow)
+    `maven-publish`
 }
 
 dependencies {
@@ -29,6 +30,19 @@ dependencies {
     implementation(libs.edc.management.api)
     implementation(libs.edc.transfer.data.plane)
     implementation(libs.edc.transfer.pull.http.receiver)
+    implementation(project(":extensions:common:sql:sql-core"))
+    implementation(project(":extensions:common:sql:sql-lease"))
+    implementation(project(":extensions:control-plane:store:sql:asset-index-sql"))
+    implementation(project(":extensions:control-plane:store:sql:contract-definition-store-sql"))
+    implementation(project(":extensions:control-plane:store:sql:contract-negotiation-store-sql"))
+    implementation(project(":extensions:control-plane:store:sql:policy-definition-store-sql"))
+    implementation(project(":extensions:control-plane:store:sql:transfer-process-store-sql"))
+
+    testImplementation(project(":core:common:junit"))
+    testImplementation(project(":core:control-plane:control-plane-catalog"))
+    testImplementation(project(":core:control-plane:control-plane-contract"))
+    testImplementation(project(":core:control-plane:control-plane-core"))
+    testImplementation(testFixtures(project(":extensions:common:sql:sql-core")))
 
     implementation(libs.edc.data.plane.selector.api)
     implementation(libs.edc.data.plane.selector.core)

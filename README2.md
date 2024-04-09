@@ -1,4 +1,4 @@
-# 2 Assets in the provider catalog
+# Pull 2 assets in the provider catalog
 
 ## Assets
 For this example first er need to create 2 different assets, then make the request to the both assests.
@@ -63,18 +63,44 @@ curl --location --request GET 'http://localhost:29291/public/' --header 'Authori
 
 ```mermaid
 sequenceDiagram
+participant Server
+participant User
 participant Consumer
 participant Provider
 
 
-User->>Provider: Check provider's catalog
+Consumer->>Provider: Check provider's catalog
 Provider-->>Consumer: Display assets with contract IDs
-User->>Provider: Negotiate contract for each asset
+Consumer->>Provider: Negotiate contract for each asset
 Provider-->>Consumer: Provide contractAgreementID
 
-User->>Provider: Add contractAgreementID to transfer file
-User->>Provider: Initiate transfer for each asset
-Server-->>Consumer: Provide authcode for data access
+Consumer->>Consumer: Add contractAgreementID to transfer file
+Consumer->>Provider: Initiate transfer for a asset
+Provider-->>Consumer: send the API Adress to the endpoint
+Server->>User: Give AuthCode
+User->>Consumer:Acces to the endpoint
+```
+# Push 
+The Push petition works similar to the Pull petition. But now all the data is pushed to the consumer.
+
+
+```mermaid
+sequenceDiagram
+participant Server
+participant User
+participant Consumer
+participant Provider
+
+Consumer->>Provider: Check provider's catalog
+Provider-->>Consumer: Display assets with contract IDs
+Consumer->>Provider: Negotiate contract for each asset
+Provider-->>Consumer: Provide contractAgreementID
+
+Consumer->>Consumer: Add contractAgreementID to transfer file
+Consumer->>Provider: Initiate transfer for a asset
+Provider-->>Server: Send the data
+User-->>Server: Get the data
+
 
 
 
